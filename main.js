@@ -1,8 +1,17 @@
+var passes = 0
 function select(index){
 
     var selected = document.getElementsByClassName("bar")[index];
-    selected.style.backgroundColor = "blue";
+    selected.classList.add("checking")
 
+}
+
+function sortComplete() {
+    var bars = document.getElementsByClassName("bar");
+    for (var i = 0; i < passes; i++) {
+        bars[i].className += " correct";
+        passes += 1;
+    }
 }
 function deselect(index) {
     var deselected = document.getElementsByClassName("bar")[index];
@@ -38,8 +47,6 @@ async function swap(array, firstIndex, secondIndex) {
 
     // Swap the elements in the array after the animation
     await printArray(array);
-
-    console.log("Swap animation complete");
 }
 
 async function selectionSort(array) {
@@ -59,6 +66,7 @@ async function selectionSort(array) {
 
     // Call printArray after the sorting is complete
     printArray(array);
+    sortComplete();
 }
 
 async function bubbleSort(array) {
@@ -75,26 +83,55 @@ async function bubbleSort(array) {
         }
     }
 
+    sortComplete();     
+
+}
+
+async function insertionSort(array) {
+
+    var i, j, key;
+
+    for (i = 1; i < array.length; i++) {
+        key = array[i];
+        j = i - 1;
+
+        while (j >= 0 && array[j] > key) {
+
+            await swap(array, j, j + 1);
+            j = j - 1;
+        }
+
+        array[j + 1] = key;
+    }
+    sortComplete();
+    printArray(array);
 }
 
 function generateArray() {
     var array = [];
 
     for (var i = 0; i < 10; i++) {
-        array.push(Math.floor(Math.random() * 100));
+        array.push(Math.floor(Math.random() * 50));
     }
 
     return array;
 }
 
 async function printArray(array) {
+
+    var sortedArray = [...array].sort((a,b)=>(a>b));
+    console.log(sortedArray)
+
     var container = document.getElementById("array");
     container.innerHTML = "";
     for (var i = 0; i < array.length; i++) {
         var value = array[i];
         var bar = document.createElement("div");
+        if(value == sortedArray[i]){
+            bar.classList.add("completed");
+        }
         bar.classList.add("bar");
-        bar.style.height = `${value * 3 + 10}px`;
+        bar.style.height = `${value * 3 + 50}px`;
         bar.style.transform = `translateX(${i * 35}px`;
         const barLabel = document.createElement("label");
         barLabel.classList.add("bar_id");
@@ -106,11 +143,10 @@ async function printArray(array) {
     // Introduce a delay with async/await
     await new Promise(resolve => setTimeout(resolve, 1000)); // Adjust the delay time as needed
 }
-
 async function main() {
     const array = generateArray();
     printArray(array);
-    await bubbleSort(array);
+    await insertionSort(array);
 }
 
 main();

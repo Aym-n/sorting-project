@@ -31,5 +31,24 @@ body{
     background-color: chocolate;
     position: absolute;
     bottom: 0px;
-    transition: 1s ease-in-out transform;
+    transition: 0.5s ease-in-out all;
+
+    text-align: center;
+    color: white;
+    padding-top: 10px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+}
+
+.completed{
+    background-color: green;
+    transition: all 0.5s ease-in-out;
+}
+
+.correct{
+    background-color: gold;
+}
+
+.checking{
+    background-color: blueviolet;
 }
