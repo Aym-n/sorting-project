@@ -15,7 +15,7 @@ body{
     align-items: center;
     height: 100vh;
 }
-
+ 
 .container{
     width: 345px;
     height: 100px;
@@ -30,5 +30,6 @@ body{
     height: 100%;
     background-color: chocolate;
     position: absolute;
-    top: 0px;
+    bottom: 0px;
+    transition: 1s ease-in-out transform;
 }
