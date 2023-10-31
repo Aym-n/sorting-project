@@ -62,3 +62,16 @@ function insertionSort(array){
         }
     
 }
+
+function generateArray(){
+
+    var array = [];
+
+    for(var i = 0 ; i < 100 ; i++){
+
+        array.push(Math.floor(Math.random() * 100));
+    }
+
+    return array;
+}
+
