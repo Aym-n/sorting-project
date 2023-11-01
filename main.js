@@ -15,7 +15,7 @@ async function check(i,j){
     checks += 1;
     document.getElementById("checks").innerHTML = checks;
 
-    await delay(1000);
+    await delay(500);
 
     document.getElementsByClassName("bar")[i].classList.remove("checking");
     document.getElementsByClassName("bar")[j].classList.remove("checking");
@@ -26,15 +26,14 @@ async function select(index){
     var selected = document.getElementsByClassName("bar")[index];
     selected.classList.add("checking")
 
-    await delay(1000);
+    await delay(500);
     selected.classList.remove("checking")
 }
 
-function sortComplete() {
+function sortComplete(array) {
     var bars = document.getElementsByClassName("bar");
     for (var i = 0; i < array.length; i++) {
-        bars[i].className += " correct";
-        passes += 1;
+        bars[i].classList.add("correct");
     }
 }
 
@@ -55,7 +54,7 @@ async function swap(array, firstIndex, secondIndex) {
     swaps += 1;
     document.getElementById("swaps").innerHTML = swaps;
     // Wait for the animation to complete
-    await delay(1000);
+    await delay(500);
 
     // Swap the elements in the array after the animation
     await printArray(array);
@@ -79,7 +78,7 @@ async function selectionSort(array) {
 
     // Call printArray after the sorting is complete
     printArray(array);
-    sortComplete();
+    sortComplete(array);
 }
 
 async function bubbleSort(array) {
@@ -98,7 +97,7 @@ async function bubbleSort(array) {
         }
     }
 
-    sortComplete();     
+    sortComplete(array);     
 
 }
 
@@ -118,8 +117,8 @@ async function insertionSort(array) {
 
         array[j + 1] = key;
     }
-    sortComplete();
-    printArray(array);
+    printArray(array)
+    sortComplete(array);
 }
 
 function generateArray() {
@@ -142,8 +141,8 @@ async function printArray(array) {
     for (var i = 0; i < array.length; i++) {
         var value = array[i];
         var bar = document.createElement("div");
-        if(value === sortedArray[i]){
-            bar.classList.add("completed");
+        if(value == sortedArray[i]){
+         bar.classList.add("completed");
         }
         bar.classList.add("bar");
         bar.style.height = `${value * 3 + 50}px`;
@@ -156,7 +155,7 @@ async function printArray(array) {
     }
 
     // Introduce a delay with async/await
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Adjust the delay time as needed
+    await new Promise(resolve => setTimeout(resolve, 500)); // Adjust the delay time as needed
 }
 
 var array;
