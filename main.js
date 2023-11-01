@@ -142,9 +142,9 @@ async function printArray(array) {
     for (var i = 0; i < array.length; i++) {
         var value = array[i];
         var bar = document.createElement("div");
-        // if(value == sortedArray[i]){
-        //     bar.classList.add("completed");
-        // }
+        if(value === sortedArray[i]){
+            bar.classList.add("completed");
+        }
         bar.classList.add("bar");
         bar.style.height = `${value * 3 + 50}px`;
         bar.style.transform = `translateX(${i * 35}px`;
