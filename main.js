@@ -1,27 +1,44 @@
-var passes = 0
-function select(index){
+var swaps = 0;
+var checks = 0;
+
+    // Add a delay for the animation
+function delay(ms) {
+
+        return new Promise(resolve => setTimeout(resolve, ms));
+
+}
+
+async function check(i,j){
+    document.getElementsByClassName("bar")[i].classList.add("checking");
+    document.getElementsByClassName("bar")[j].classList.add("checking"); 
+    
+    checks += 1;
+    document.getElementById("checks").innerHTML = checks;
+
+    await delay(1000);
+
+    document.getElementsByClassName("bar")[i].classList.remove("checking");
+    document.getElementsByClassName("bar")[j].classList.remove("checking");
+}
+
+async function select(index){
 
     var selected = document.getElementsByClassName("bar")[index];
     selected.classList.add("checking")
 
+    await delay(1000);
+    selected.classList.remove("checking")
 }
 
 function sortComplete() {
     var bars = document.getElementsByClassName("bar");
-    for (var i = 0; i < passes; i++) {
+    for (var i = 0; i < array.length; i++) {
         bars[i].className += " correct";
         passes += 1;
     }
 }
-function deselect(index) {
-    var deselected = document.getElementsByClassName("bar")[index];
-    deselected.style.backgroundColor = ""; // This removes the background color
-}
 
 async function swap(array, firstIndex, secondIndex) {
-
-    select(firstIndex);
-    select(secondIndex);
 
     var bars = document.getElementsByClassName("bar");
 
@@ -35,13 +52,8 @@ async function swap(array, firstIndex, secondIndex) {
     var temp = array[firstIndex];
     array[firstIndex] = array[secondIndex];
     array[secondIndex] = temp;
-
-    // Add a delay for the animation
-    function delay(ms) {
-
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
+    swaps += 1;
+    document.getElementById("swaps").innerHTML = swaps;
     // Wait for the animation to complete
     await delay(1000);
 
@@ -55,6 +67,7 @@ async function selectionSort(array) {
     for (i = 0; i < array.length; i++) {
         minIndex = i;
         for (j = i + 1; j < array.length; j++) {
+            await check(minIndex,j);
             if (array[j] < array[minIndex]) {
                 minIndex = j;
             }
@@ -75,6 +88,8 @@ async function bubbleSort(array) {
 
     for (i = 0; i < array.length; i++) {
         for (j = 0; j < array.length - i - 1; j++) {
+
+            await check(j,j+1);
 
             if (array[j] > array[j + 1]) {
 
