@@ -143,10 +143,29 @@ async function printArray(array) {
     // Introduce a delay with async/await
     await new Promise(resolve => setTimeout(resolve, 1000)); // Adjust the delay time as needed
 }
-async function main() {
-    const array = generateArray();
+
+var array;
+
+window.onload = function(){
+    array = generateArray();
     printArray(array);
-    await insertionSort(array);
 }
 
-main();
+function generateRandom(){
+    array = generateArray();
+    printArray(array);
+}
+
+async function main(i) {
+    if(i === 1){
+    await insertionSort(array);
+    }
+    else if(i === 2){
+    await bubbleSort(array);
+    }
+    else if(i === 3){
+    await selectionSort(array);
+    }
+}
+
+// main();

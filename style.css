@@ -12,6 +12,7 @@ body{
 .wrapper{
     display: flex;
     /* flex-direction: column; */
+    flex-direction: column;
     align-items: center;
     height: 100vh;
 }
@@ -20,7 +21,8 @@ body{
     width: 345px;
     height: 100px;
     position: relative;
-    margin: auto;
+    margin-top: 22%;
+    margin-bottom: 5%;
 }
 
 .bar{
@@ -51,4 +53,22 @@ body{
 
 .checking{
     background-color: blueviolet;
+}
+
+.flex{
+    display: flex;
+    gap: 10px;
+}
+
+.sort_control{
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 0 10px grey;
+}
+
+.sort_control:hover{
+    cursor: pointer;
+    background-color: lightgreen;
+    color: rebeccapurple;
 }
