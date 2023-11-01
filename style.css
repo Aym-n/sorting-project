@@ -31,4 +31,8 @@ body{
     background-color: chocolate;
     position: absolute;
     top: 0px;
+    text-align: center;
+    font-size: 1.4rem;
+    color: white;
+    padding-top: 5px;
 }
